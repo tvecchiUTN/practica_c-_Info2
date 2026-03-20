@@ -1,9 +1,18 @@
 #include <iostream>
 
-using namespace std;
+#include "punto.h"
 
 int main()
 {
-    cout << "Hello World!" << endl;
+    Punto probando(1.11, 4.44);
+
+    Punto seta(probando);
+
+    Punto operat = probando;
+
+    std::cout << seta.getX() << " " << seta.getY() << "\n";
+
+    std::cout << operat.getX() << " " << operat.getY() << "\n";
+
     return 0;
 }

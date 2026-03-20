@@ -38,6 +38,8 @@ Punto::Punto(double ejeX, double ejeY)
     my = ejeY;
 }
 
+Punto::Punto(const Punto& r_punto) : mx(r_punto.mx), my((r_punto.my)) {}
+
 void Punto::setPunto(double ejeX, double ejeY)
 {
     if(!in_range(ejeX) || !in_range(ejeY))
@@ -52,7 +54,7 @@ void Punto::setPunto(double ejeX, double ejeY)
 void Punto::setPunto(const Punto& r_punto)
 {
     mx = r_punto.mx;
-    my = r_punto.getY();
+    my = r_punto.my;
 }
 
 Punto& Punto::getPunto() {return *this;}
@@ -78,3 +80,11 @@ void Punto::setY(double ejeY)
 }
 
 double Punto::getY() const {return my;}
+
+Punto& Punto::operator =(const Punto& r_pun)
+{
+    mx = r_pun.mx;
+    my = r_pun.my;
+
+    return *this;
+}
