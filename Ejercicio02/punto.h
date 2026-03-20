@@ -7,6 +7,7 @@ private:
     double mx;
     double my;
 
+    bool in_range(double val);
 public:
     Punto();
 

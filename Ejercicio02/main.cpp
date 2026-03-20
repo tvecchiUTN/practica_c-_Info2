@@ -3,7 +3,7 @@
 
 int main()
 {
-    Punto test(0.45, 5.43);
+    Punto test(-10294, 5.43);
 
     Punto test2;
 
