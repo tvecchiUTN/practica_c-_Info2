@@ -12,43 +12,30 @@ bool Punto::in_range(double val)
     return false;
 }
 
-Punto::Punto(double ejeX)
+double Punto::set_range(double val)
 {
-    if(!in_range(ejeX))
+    if(val > 1000)
     {
-        mx = 0;
-        my = 0;
-        return;
+        return 1000;
+    }
+    else if(val < -1000)
+    {
+        return -1000;
     }
 
-    mx = ejeX;
-    my = 0;
+    return val;
 }
 
-Punto::Punto(double ejeX, double ejeY)
-{
-    if(!in_range(ejeX) || !in_range(ejeY))
-    {
-        mx = 0;
-        my = 0;
-        return;
-    }
+Punto::Punto(double ejeX) : mx(set_range(ejeX)), my(0) {}
 
-    mx = ejeX;
-    my = ejeY;
-}
+Punto::Punto(double ejeX, double ejeY) : mx(set_range(ejeX)), my(set_range(ejeY)) {}
 
 Punto::Punto(const Punto& r_punto) : mx(r_punto.mx), my((r_punto.my)) {}
 
 void Punto::setPunto(double ejeX, double ejeY)
 {
-    if(!in_range(ejeX) || !in_range(ejeY))
-    {
-        return;
-    }
-
-    mx = ejeX;
-    my = ejeY;
+    mx = set_range(ejeX);
+    my = set_range(ejeY);
 }
 
 void Punto::setPunto(const Punto& r_punto)
@@ -57,29 +44,15 @@ void Punto::setPunto(const Punto& r_punto)
     my = r_punto.my;
 }
 
-Punto& Punto::getPunto() {return *this;}
-
 void Punto::setX(double ejeX)
 {
-    if(!in_range(ejeX))
-    {
-        return;
-    }
-    mx = ejeX;
+    mx = set_range(ejeX);
 }
-
-double Punto::getX() const {return mx;}
 
 void Punto::setY(double ejeY)
 {
-    if(!in_range(ejeY))
-    {
-        return;
-    }
-    my = ejeY;
+    my = set_range(ejeY);
 }
-
-double Punto::getY() const {return my;}
 
 Punto& Punto::operator =(const Punto& r_pun)
 {
@@ -87,4 +60,24 @@ Punto& Punto::operator =(const Punto& r_pun)
     my = r_pun.my;
 
     return *this;
+}
+
+Punto Punto::operator +(const Punto& r_pun)
+{
+    Punto ret;
+
+    ret.setX(set_range(mx + r_pun.mx));
+    ret.setY(set_range(my + r_pun.my));
+
+    return ret;
+}
+
+Punto Punto::operator -(const Punto& r_pun)
+{
+    Punto ret;
+
+    ret.setX(set_range(mx - r_pun.mx));
+    ret.setY(set_range(my - r_pun.my));
+
+    return ret;
 }

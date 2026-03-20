@@ -8,6 +8,7 @@ private:
     double my;
 
     bool in_range(double val);
+    double set_range(double val);
 public:
 
     //Constructores
@@ -25,19 +26,23 @@ public:
 
     void setPunto(const Punto& r_punto);
 
-    Punto &getPunto();
+    Punto &getPunto() {return *this;}
 
     void setX(double ejeX);
 
-    double getX() const;
+    double getX() const {return mx;}
 
     void setY(double ejeY);
 
-    double getY() const;
+    double getY() const {return my;}
 
     //Operadores
 
     Punto& operator= (const Punto& r_pun);
+
+    Punto operator+ (const Punto& r_pun);
+
+    Punto operator- (const Punto& r_pun);
 };
 
 #endif // PUNTO_H
