@@ -12,6 +12,19 @@ bool Punto::in_range(double val)
     return false;
 }
 
+Punto::Punto(double ejeX)
+{
+    if(!in_range(ejeX))
+    {
+        mx = 0;
+        my = 0;
+        return;
+    }
+
+    mx = ejeX;
+    my = 0;
+}
+
 Punto::Punto(double ejeX, double ejeY)
 {
     if(!in_range(ejeX) || !in_range(ejeY))
@@ -34,6 +47,12 @@ void Punto::setPunto(double ejeX, double ejeY)
 
     mx = ejeX;
     my = ejeY;
+}
+
+void Punto::setPunto(const Punto& r_punto)
+{
+    mx = r_punto.mx;
+    my = r_punto.getY();
 }
 
 Punto& Punto::getPunto() {return *this;}

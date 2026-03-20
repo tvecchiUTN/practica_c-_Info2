@@ -11,9 +11,13 @@ private:
 public:
     Punto();
 
+    Punto(double ejeX);
+
     Punto(double ejeX, double ejeY);
 
     void setPunto(double ejeX, double ejeY);
+
+    void setPunto(const Punto& r_punto);
 
     Punto &getPunto();
 
