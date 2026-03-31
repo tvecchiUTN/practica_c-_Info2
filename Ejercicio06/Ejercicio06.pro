@@ -4,4 +4,8 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += \
+        alumno.cpp \
         main.cpp
+
+HEADERS += \
+    alumno.h
