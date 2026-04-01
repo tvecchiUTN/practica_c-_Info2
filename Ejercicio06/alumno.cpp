@@ -5,6 +5,11 @@
 //Metodos privados
 char* alumno::cfgName(const char* src)
 {
+    if(!src)
+    {
+        return nullptr;
+    }
+
     char* ret_name = nullptr;
 
     int szName = strlen(src);
@@ -41,10 +46,10 @@ alumno::alumno(const alumno& r_al)
 {
     if(is_repeat_name)
     {
-        delete[] nombre;
+        delete[] this->nombre;
     }
 
-    nombre = cfgName(r_al.nombre);
+    this->nombre = cfgName(r_al.nombre);
     is_repeat_name = true;
 
     legajo = r_al.legajo;
@@ -60,7 +65,12 @@ void alumno::setLegajo(long l)
 
 void alumno::setNombre(const char* name)
 {
+    if(is_repeat_name)
+    {
+        delete[] nombre;
+    }
     nombre = cfgName(name);
+    is_repeat_name = true;
 }
 
 //Geteadores
@@ -77,7 +87,12 @@ char* alumno::getNombre() const
 //Operadores
 alumno& alumno::operator=(const char* name)
 {
+    if(is_repeat_name)
+    {
+        delete[] nombre;
+    }
     nombre = cfgName(name);
+    is_repeat_name = true;
 
     return *this;
 }
@@ -91,7 +106,12 @@ alumno& alumno::operator=(long l)
 
 alumno& alumno::operator=(const alumno& r_al)
 {
-    nombre = cfgName(r_al.nombre);
+    if(is_repeat_name)
+    {
+        delete[] nombre;
+    }
+    nombre = cfgName(r_al.getNombre());
+    is_repeat_name = true;
 
     legajo = r_al.legajo;
 

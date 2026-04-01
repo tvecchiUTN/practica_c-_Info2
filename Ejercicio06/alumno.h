@@ -31,6 +31,8 @@ public:
 
     alumno& operator=(const alumno& r_al);
 
+    friend ostream& operator<<(ostream& salida, const alumno& al);
+
     ~alumno();
 };
 
