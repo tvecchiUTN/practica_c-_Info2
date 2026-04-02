@@ -10,7 +10,7 @@ Punto::Punto()
     m_x = 0;
     m_y = 0;
 
-    cantPuntos++;
+    //cantPuntos++;
 }
 
 //Contructor parametrizado
@@ -18,7 +18,7 @@ Punto::Punto(double valX, double valY)
 {
     m_x = valX;
     m_y = valY;
-    cantPuntos++;
+    //cantPuntos++;
 }
 
 //Contructor de copia
@@ -26,7 +26,7 @@ Punto::Punto(const Punto& r_punto)
 {
     this->m_x = r_punto.m_x;
     this->m_y = r_punto.m_y;
-    cantPuntos++;
+    //cantPuntos++;
 }
 
 ////Seteadores////
@@ -50,6 +50,12 @@ void Punto::setPunto(double valX, double valY)
     m_y = valY;
 }
 
+//Seteador punto
+void Punto::setPunto(const Punto& r_punto)
+{
+    this->m_x = r_punto.m_x;
+    this->m_y = r_punto.m_y;
+}
 ////Geteadores////
 
 //Geteador valor x

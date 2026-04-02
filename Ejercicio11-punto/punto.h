@@ -35,6 +35,9 @@ public:
     //Seteador punto
     void setPunto(double valX, double valY);
 
+    //Seteador punto por referencia
+    void setPunto(const Punto& r_punto);
+
     ////Geteadores////
 
     //Geteador valor x
