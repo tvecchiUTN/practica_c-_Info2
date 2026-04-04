@@ -5,19 +5,41 @@ using namespace std;
 
 int main()
 {
-    miString str1("AB");
+    miString str1("Tomas");
 
-    miString str2("ABC");
+    miString str2("Vecchi");
 
-    miString str3("AB");
+    miString str3("Gabriel");
 
-    miString str4("ABA");
+    cout << str1 << endl;
 
-    miString str5("ABZ");
+    cout << str2 << endl;
 
-    miString str6("ABJ");
+    cout << str3 << endl;
+    miString strCpy(str1);
 
-    cout << (str1 == str2);
+    miString final;
 
+    cout << str1 << endl;
+
+    cout << strCpy << endl;
+
+    strCpy += ' ';
+
+    str1 += ' ';
+
+    cout << strCpy << endl;
+
+    final = str1 + str2; //Fuga de memoria
+
+    cout << final << endl;
+
+    final += ' ';
+
+    cout << final << endl;
+
+    final += str3;
+
+    cout << final << endl;;
     return 0;
 }

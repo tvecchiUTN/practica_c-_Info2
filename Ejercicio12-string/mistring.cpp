@@ -16,7 +16,7 @@ miString::miString()
 //Contructor parametrizado
 miString::miString(const char* str)
 {
-    m_size = std::strlen(str)+1;
+    m_size = std::strlen(str) +1;
     m_string = new char[m_size];
 
     for(int i = 0; i < m_size; i++)
@@ -41,6 +41,7 @@ miString::miString(const miString& r_str)
 miString::~miString()
 {
     delete[] m_string;
+    m_string = nullptr;
 }
 
 ////Metodos consultores de datos del string////
@@ -196,7 +197,9 @@ bool miString::operator==(const miString& r_str)
     for(; !(*p_str1 - *p_str2) && *p_str1 && *p_str2; p_str1++, p_str2++);
 
     if(!(*p_str1 - *p_str2))
+    {
         return true;
+    }
 
     return false;
 }
@@ -209,6 +212,13 @@ bool miString::operator<(const miString& r_str)
     char* p_str2 = r_str.m_string;
 
     for(; !(*p_str1 - *p_str2) && *p_str1 && *p_str2; p_str1++, p_str2++);
+
+    if((*p_str1 - *p_str2) < 0)
+    {
+        return true;
+    }
+
+    return false;
 }
 
 //String mayor a otro
@@ -218,12 +228,27 @@ bool miString::operator>(const miString& r_str)
     char* p_str2 = r_str.m_string;
 
     for(; !(*p_str1 - *p_str2) && *p_str1 && *p_str2; p_str1++, p_str2++);
+
+    if((*p_str1 - *p_str2) > 0)
+    {
+        return true;
+    }
+
+    return false;
+}
+
+//Posicionador de char
+char& miString::operator[] (int index)
+{
+    return ((index < m_size) ? m_string[index] : m_string[m_size-2]);
 }
 
 /*
-//Posicionador de char
-char& miString::operator[] (int index);
-
 //Signo igual
-miString& miString::operator= (char c);
+miString& miString::operator= (char c)
+{
+
+
+    return *this;
+}
 */

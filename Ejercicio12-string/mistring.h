@@ -71,7 +71,7 @@ public:
     char& operator[] (int index);
 
     //Signo igual a char
-    miString& operator= (char c);
+    //miString& operator= (char c);
 };
 
 #endif // MISTRING_H
