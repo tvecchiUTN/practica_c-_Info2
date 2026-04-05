@@ -9,37 +9,11 @@ int main()
 
     miString str2("Vecchi");
 
-    miString str3("Gabriel");
-
-    cout << str1 << endl;
-
-    cout << str2 << endl;
-
-    cout << str3 << endl;
-    miString strCpy(str1);
-
-    miString final;
-
-    cout << str1 << endl;
-
-    cout << strCpy << endl;
-
-    strCpy += ' ';
-
     str1 += ' ';
 
-    cout << strCpy << endl;
+    miString strNombre(str1 + str2);
 
-    final = str1 + str2; //Fuga de memoria
+    cout << strNombre << endl;
 
-    cout << final << endl;
-
-    final += ' ';
-
-    cout << final << endl;
-
-    final += str3;
-
-    cout << final << endl;;
     return 0;
 }

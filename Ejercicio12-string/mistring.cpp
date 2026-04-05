@@ -16,7 +16,14 @@ miString::miString()
 //Contructor parametrizado
 miString::miString(const char* str)
 {
-    m_size = std::strlen(str) +1;
+    if(!str)
+    {
+        m_size = 0;
+        m_string = nullptr;
+        return;
+    }
+
+    m_size = std::strlen(str) + 1;
     m_string = new char[m_size];
 
     for(int i = 0; i < m_size; i++)
@@ -170,6 +177,8 @@ miString operator+(const miString& r_str1, const miString& r_str2)
 
     miString ret(aux_str);
 
+    delete[] aux_str;
+
     return ret;
 }
 
@@ -180,7 +189,7 @@ miString& miString::operator=(const miString& r_str)
     m_string = new char[r_str.m_size];
     m_size = r_str.m_size;
 
-    for(int i = 0; i <= m_size; i++)
+    for(int i = 0; i < m_size; i++)
     {
         this->m_string[i] = r_str.m_string[i];
     }
