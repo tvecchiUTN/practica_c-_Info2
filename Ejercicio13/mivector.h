@@ -1,6 +1,8 @@
 #ifndef MIVECTOR_H
 #define MIVECTOR_H
 
+#include <iostream>
+
 template<class T>
 class miVector
 {
@@ -36,9 +38,12 @@ public:
     //Agrega un valor al final
     miVector<T>& operator+= (T val);
 
-    /*
     //Concatena vectores
     miVector<T>& operator+= (const miVector<T>& r_vec);
+
+    //Flujo de salida
+    template <class U>
+    friend std::ostream& operator<< (std::ostream& r_stdout, const miVector<U>& r_vec);
 
     //Igualacion de vectores
     miVector<T>& operator= (const miVector<T>& r_vec);
@@ -51,7 +56,7 @@ public:
 
     //Devuelve elemento en posicion pos
     T& operator[] (int pos);
-    */
+
 };
 
 #include "mivector.cpp"
