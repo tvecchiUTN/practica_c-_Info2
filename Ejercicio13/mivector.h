@@ -28,7 +28,7 @@ public:
     ////Metodos////
 
     //Longitud del vector
-    int length();
+    int length() const;
 
     //Primera aparicion de un valor
     int posicion(T val);

@@ -60,7 +60,7 @@ miVector<T>::~miVector()
 
 template<class T>
 //Longitud del vector
-int miVector<T>::length()
+int miVector<T>::length() const
 {
     return m_sz;
 }
@@ -218,19 +218,7 @@ template<class T>
 //Devuelve elemento en posicion pos
 T& miVector<T>::operator[] (int pos)
 {
-    if(m_sz > 0)
-    {
-        if(pos >= m_sz)
-        {
-            return m_vec[m_sz-1];
-        }
-        else if(pos < 0)
-        {
-            return m_vec[0];
-        }
-    }
-
-    return m_vec[0];
+    return m_vec[pos];
 }
 
 #endif

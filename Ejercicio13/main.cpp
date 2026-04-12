@@ -20,6 +20,13 @@ int main() {
     std::cout << "Contenido de v3 (concatenado):\n";
     std::cout << v3;
 
+    std::cout << "Recorro el vector" << std::endl;
+
+    for(int i = 0; i < v3.length(); i++)
+    {
+        std::cout << v3[i] << std::endl;
+    }
+
     // 4. Probamos igualdad (==)
     miVector<int> v4(v1); // Constructor de copia
     if (v1 == v4) {
@@ -29,6 +36,8 @@ int main() {
     // 5. Probamos operador [] (Lectura y Escritura)
     v3[2] = 99; // Guarda 99 en la posicion 2
     std::cout << "v3[2] modificado es: " << v3[2] << "\n";
+
+    std::cout << v3;
 
     // 6. Probamos operador [] fuera de rango (pidiendo el indice 10)
     int valorErroneo = v3[10];
