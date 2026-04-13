@@ -44,8 +44,11 @@ public:
 
     ////Operadores////
 
-    //Asignacion con string
+    //Asignacion con puntero a char
     Alumno& operator= (const char* nombre);
+
+    //Asignacion con string
+    Alumno& operator= (std::string str);
 
     //Asignacion de legajo
     Alumno& operator= (long legajo);

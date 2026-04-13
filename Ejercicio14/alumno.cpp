@@ -1,5 +1,6 @@
 #include "alumno.h"
 #include <string.h>
+#include <string>
 #include <cstring>
 #include <iostream>
 
@@ -85,12 +86,31 @@ long Alumno::getLegajo() const
 
 ////Operadores////
 
-//Asignacion con string
+//Asignacion con puntero a char
 Alumno& Alumno::operator= (const char* nombre)
 {
     delete[] m_nombre;
 
     m_nombre = cpy_name(nombre);
+
+    return *this;
+}
+
+//Asignacion con string
+Alumno& Alumno::operator= (std::string str)
+{
+    delete[] m_nombre;
+    m_nombre = nullptr;
+
+    m_nombre = new char[str.length() + 1];
+
+    int i;
+    for(i = 0; str[i]; i++)
+    {
+        m_nombre[i] = str[i];
+    }
+
+    m_nombre[i] = '\0';
 
     return *this;
 }
@@ -110,6 +130,8 @@ Alumno& Alumno::operator= (const Alumno& r_al)
 
     delete[] m_nombre;
 
+    m_nombre = nullptr;
+
     m_nombre = cpy_name(r_al.m_nombre);
 
     return *this;
@@ -124,13 +146,24 @@ std::ostream& operator<< (std::ostream& salida, const Alumno& r_al)
     return salida;
 }
 
-/**
 //Flujo de entrada, probando
 std::istream& operator>> (std::istream& entrada, Alumno& r_al)
 {
+    long aux_leg = 0;
+    std::string aux_name;
 
+    std::cout << "Ingrese el nombre: ";
+    std::getline(entrada, aux_name);
+    aux_name[aux_name.length()] = '\0';
+
+    std::cout << "Ingrese el legajo: ";
+    entrada >> aux_leg;
+
+    r_al = aux_name;
+    r_al = aux_leg;
+
+    return entrada;
 }
-**/
 
 //Igualacion de nombres
 bool Alumno::operator== (const Alumno& r_al) const

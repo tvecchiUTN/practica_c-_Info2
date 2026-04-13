@@ -5,10 +5,15 @@
 
 int main()
 {
-    Alumno yo("Tomas Gabriel", 233);
+    int var = 56;
+    QFile archivo("C:/Users/tomas/GitHub/practica_c-_Info2/Ejercicio14/test.txt");
+    if(archivo.open(QIODevice::Text | QIODevice::WriteOnly))
+    {
+        QTextStream stream(&archivo);
+        stream << "Escribo el valor de la variable: " << var << "\n";
 
-    Alumno el("Juan Perez", 789);
+        archivo.close();
+    }
 
-    //std::cout << yo.getNombre() << " " << yo.getLegajo() << std::endl;
-    std::cout << el;
+    return 0;
 }
