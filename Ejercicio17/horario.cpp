@@ -57,7 +57,10 @@ void Horario::setHorarios(const char* str, bool is_format24, bool is_AM)
             continue;
         }
         numero_tiempo[index_aux] = str[i];
-        index_aux++;
+        if(index_aux < 2)
+        {
+            index_aux++;
+        }
     }
 
     if(index_aux == 1)
@@ -128,6 +131,15 @@ bool Horario::isAM() const
 
 ////Operadores////
 
+//Igualar la hora, objeto Horario
+Horario& Horario::operator= (const Horario& r_horario)
+{
+    m_hora = r_horario.m_hora;
+    m_minutos = r_horario.m_minutos;
+    m_segundos = r_horario.m_segundos;
+}
+
+//Flujo de salida
 std::ostream& operator<< (std::ostream& consoleOut, const Horario& r_horario)
 {
     consoleOut << (int)r_horario.m_hora << ":" << (int)r_horario.m_minutos << ":" << (int)r_horario.m_segundos << "\n";
@@ -138,35 +150,120 @@ std::ostream& operator<< (std::ostream& consoleOut, const Horario& r_horario)
 //Si es mayor que otro horario
 bool Horario::operator> (const Horario& r_horario) const
 {
+    if(m_hora > r_horario.m_hora)
+    {
+        return true;
+    }
+    else if((m_hora == r_horario.m_hora) && (m_minutos > r_horario.m_minutos))
+    {
+        return true;
+    }
+    else if((m_hora == r_horario.m_hora) && (m_minutos == r_horario.m_minutos) && (m_segundos > r_horario.m_segundos))
+    {
+        return true;
+    }
 
+    return false;
 }
 
 //Si es menor que otro horario
 bool Horario::operator< (const Horario& r_horario) const
 {
+    if(m_hora < r_horario.m_hora)
+    {
+        return true;
+    }
+    else if((m_hora == r_horario.m_hora) && (m_minutos < r_horario.m_minutos))
+    {
+        return true;
+    }
+    else if((m_hora == r_horario.m_hora) && (m_minutos == r_horario.m_minutos) && (m_segundos < r_horario.m_segundos))
+    {
+        return true;
+    }
 
+    return false;
 }
 
 //Si dos horarios son iguales
 bool Horario::operator== (const Horario& r_horario) const
 {
+    if((m_hora == r_horario.m_hora) && (m_minutos == r_horario.m_minutos) && (m_segundos == r_horario.m_segundos))
+    {
+        return true;
+    }
 
+    return false;
 }
 
 //Suma de horarios
 Horario Horario::operator+ (const Horario& r_horario) const
 {
+    Horario ret_time;
 
+    ret_time.m_hora = (m_hora + r_horario.m_hora) % 24;
+
+    ret_time.m_minutos = (m_minutos + r_horario.m_minutos) % 60;
+    if((m_minutos + r_horario.m_minutos) >= 60)
+    {
+        ret_time.m_hora = (ret_time.m_hora + 1) % 24;
+    }
+
+    ret_time.m_segundos = (m_segundos + r_horario.m_segundos) % 60;
+    if((m_segundos + r_horario.m_segundos) >= 60)
+    {
+        ret_time.m_minutos = (ret_time.m_minutos + 1) % 24;
+    }
+
+    return ret_time;
 }
 
 //Precremento para sumarse el horario
 Horario& Horario::operator++()
 {
+    m_segundos += 1;
+    if(m_segundos >= 60)
+    {
+        m_segundos = 0;
+        m_minutos += 1;
 
+        if(m_minutos >= 60)
+        {
+            m_minutos = 0;
+            m_hora += 1;
+
+            if(m_hora >= 24)
+            {
+                m_hora = 0;
+            }
+        }
+    }
+
+    return *this;
 }
 
 //Postcremento para sumarse el horario
-Horario Horario::operator++ (int dummy)
+Horario Horario::operator++ (int)
 {
+    Horario ret_horario(*this);
 
+    m_segundos += 1;
+    if(m_segundos >= 60)
+    {
+        m_segundos = 0;
+        m_minutos += 1;
+
+        if(m_minutos >= 60)
+        {
+            m_minutos = 0;
+            m_hora += 1;
+
+            if(m_hora >= 24)
+            {
+                m_hora = 0;
+            }
+        }
+    }
+
+    return ret_horario;
 }

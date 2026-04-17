@@ -39,6 +39,9 @@ public:
 
     ////Operadores////
 
+    //Igualar la hora, objeto Horario
+    Horario& operator= (const Horario& r_horario);
+
     //Flujo de salida
     friend std::ostream& operator<< (std::ostream& consoleOut, const Horario& r_horario);
 
