@@ -6,7 +6,7 @@
 
 class Horario
 {
-private:
+protected:
 
     uint8_t m_hora;
     uint8_t m_minutos;

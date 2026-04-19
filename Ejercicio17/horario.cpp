@@ -137,6 +137,8 @@ Horario& Horario::operator= (const Horario& r_horario)
     m_hora = r_horario.m_hora;
     m_minutos = r_horario.m_minutos;
     m_segundos = r_horario.m_segundos;
+
+    return *this;
 }
 
 //Flujo de salida
