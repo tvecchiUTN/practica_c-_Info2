@@ -4,4 +4,12 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += \
-        main.cpp
+        admin.cpp \
+        empleado.cpp \
+        main.cpp \
+        optecnico.cpp
+
+HEADERS += \
+    admin.h \
+    empleado.h \
+    optecnico.h
